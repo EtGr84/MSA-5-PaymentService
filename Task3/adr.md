@@ -23,30 +23,6 @@
 - `Notification Service` отправляет клиентские и внутренние уведомления;
 - `Payment Orchestrator` координирует процесс и принимает решение о следующем шаге на основании результатов доменных операций.
 
-Выбранная структура:
-
-```plantuml
-@startuml
-skinparam componentStyle rectangle
-
-actor Client
-
-component "Payment Orchestrator\n(Camunda BPMN)" as Orchestrator
-component "Payment Service" as Payment
-component "FraudCheck Service" as Fraud
-component "Notification Service" as Notification
-database "Saga State / Camunda Storage" as SagaState
-database "Payment DB" as PaymentDb
-
-Client --> Orchestrator : initiate payment
-Orchestrator --> Payment : create/debit/refund/transfer
-Payment --> PaymentDb : payment operations
-Orchestrator --> Fraud : request fraud decision
-Orchestrator --> Notification : send status events
-Orchestrator --> SagaState : process state,\ntimers, retries
-@enduml
-```
-
 Такой подход лучше подходит для долгоживущего процесса: Camunda управляет состояниями и таймерами отдельно от доменных операций, а `Payment Service` остается компактнее и стабильнее.
 
 ### Вариант B «Оркестрация внутри Payment Service»
