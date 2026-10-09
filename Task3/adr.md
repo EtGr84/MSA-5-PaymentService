@@ -50,7 +50,7 @@
 
 Принимаем вариант А «Отдельный Payment Orchestrator Service».
 
-| 1| Payment Orchestrator | Payment Service |
+| № | Payment Orchestrator | Payment Service |
 | --- | --- | --- |
 | 1 | Выполняет retry и тайм-ауты для внешних проверок | Гарантирует идемпотентность финансовых команд по ключу платежа |
 | 2 | Публикует события и метрики для мониторинга, поддержки и безопасности |  Выполняет операции `CREATE_PAYMENT`, `DEBIT_CUSTOMER_ACCOUNT`, `REFUND_CUSTOMER`, `TRANSFER_TO_COUNTERPARTY`, `COMPLETE_PAYMENT`; |
