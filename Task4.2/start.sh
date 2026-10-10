@@ -6,7 +6,6 @@ cd "$SCRIPT_DIR"
 
 echo "OrchestrPay"
 
-
 echo ""
 echo "Stopping containers..."
 docker compose down --remove-orphans 2>/dev/null || true
