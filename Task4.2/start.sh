@@ -6,17 +6,15 @@ cd "$SCRIPT_DIR"
 
 echo "OrchestrPay"
 
-# --- 1. Stop previous ---
+
 echo ""
 echo "Stopping containers..."
 docker compose down --remove-orphans 2>/dev/null || true
 
-# --- 2. Build and start everything ---
 echo ""
 echo "Starting services..."
 docker compose up --build -d
 
-# --- 3. Wait for payment-orchestrator ---
 echo ""
 echo "Waiting"
 timeout=180
@@ -35,5 +33,4 @@ if [ $elapsed -ge $timeout ]; then
     echo "⚠️  Orchestrator may still be starting."
 fi
 
-# --- 4. Show status ---
 echo "  Services started"
