@@ -8,7 +8,7 @@ echo "OrchestrPay"
 
 # --- 1. Stop previous ---
 echo ""
-echo "🧹 Stopping containers..."
+echo "Stopping containers..."
 docker compose down --remove-orphans 2>/dev/null || true
 
 # --- 2. Build and start everything ---
