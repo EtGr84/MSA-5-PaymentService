@@ -29,7 +29,7 @@ while [ $elapsed -lt $timeout ]; do
 done
 
 if [ $elapsed -ge $timeout ]; then
-    echo "⚠️  Orchestrator may still be starting."
+    echo "Orchestrator still tarting."
 fi
 
 echo "  Services started"
