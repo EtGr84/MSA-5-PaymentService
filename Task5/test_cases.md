@@ -2,7 +2,7 @@
 
 Столбцы «Последовательность шагов» и «Результат выполнения процесса» заполнены по BPMN `payment-process`.
 
-| Название | Тип | Компоненты | Предусловия | Последовательность шагов | Результат выполнения процесса |
+| # п/| Название | Тип | Компоненты | Предусловия | Последовательность шагов | Результат выполнения процесса |
 | --- | --- | --- | --- | --- | --- |
 | Компенсационный сценарий после pivot выполняется корректно (reverse -> refund) | Интеграционный | Payment Orchestrator, workers `reverse-merchant-transfer`, `refund-customer`, Zeebe | Процесс находится в compensation flow | 1. Проверить наличие compensation flow и задания `reverse-merchant-transfer`.<br>2. Проверить маршрут к этой ветке после успешного перевода контрагенту. | Компенсационный сценарий выполнен |
 | Возврат средств клиенту после reject-ветки | Интеграционный | Payment Orchestrator, worker `refund-customer`, Zeebe | Antifraud/manual review завершились отказом | 1. Завершить `request-fraud-check` с `fraudDecision = "DENY"` либо user task с `manualReviewDecision = "DENY"`.<br>2. Выполнить `apply-fraud-deny`, затем `block-payment`.<br>3. Успешно завершить `refund-customer` на `Activity_RefundDenied`.<br>4. Завершить оба задания уведомлений. | Средства возвращены клиенту |
